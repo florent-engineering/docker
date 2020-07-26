@@ -23,6 +23,9 @@ ENV CGNS_HOME=$HOME/packages/CGNS-3.3.0/opt-gfortran
 ENV PATH=$PATH:$CGNS_HOME/bin
 ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CGNS_HOME/lib
 
+# create the repo directory
+RUN mkdir -p $HOME/repos
+
 # MACH framework
 RUN cd $HOME/repos && \
     git clone https://github.com/mdolab/baseclasses && \
@@ -93,5 +96,4 @@ RUN cd $HOME/repos && \
     ./Allmake && \
     pip install .
 
-RUN cd $HOME && \
-    rm -rf repos
+RUN rm -rf $HOME/repos
